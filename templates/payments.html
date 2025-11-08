@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>Your Payments</h3>
+<div class="card card-product p-3">
+  {% if payments %}
+  <table class="table">
+    <thead><tr><th>ID</th><th>Method</th><th>Amount</th><th>Status</th><th>Paid At</th><th></th></tr></thead>
+    <tbody>
+      {% for p in payments %}
+      <tr>
+        <td>{{ p.payment_id }}</td>
+        <td>{{ p.method }}</td>
+        <td>₹{{ '%.2f'|format(p.amount) }}</td>
+        <td>{{ p.pay_status }}</td>
+        <td>{{ p.paid_at }}</td>
+        <td>
+          {% if p.pay_status != 'Paid' %}
+          <form method="post" action="/confirm_payment">
+            <input type="hidden" name="payment_id" value="{{ p.payment_id }}">
+            <button class="btn btn-sm btn-success">Mark Paid</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="p-4 text-muted">No payments found.</div>
+  {% endif %}
+</div>
+{% endblock %}

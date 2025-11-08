@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="card card-product p-3 mb-3">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h4>{{ product.product_name }}</h4>
+          <div class="small text-muted">₹{{ '%.2f'|format(product.price) }} • {{ '%.1f'|format(product.avg_rating) }} ★</div>
+        </div>
+        <div>
+          <form method="post" action="/add_to_cart" class="d-flex">
+            <input type="hidden" name="product_id" value="{{ product.product_id }}">
+            <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm me-2" style="width:80px;">
+            <button class="btn btn-primary btn-sm">Add to cart</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <div class="card card-product p-3">
+      <h5>Reviews</h5>
+      {% if reviews %}
+        {% for rv in reviews %}
+          <div class="border-bottom py-2">
+            <strong>{{ rv.name }}</strong>
+            <span class="small text-muted"> — {{ rv.rating }} ★</span>
+            <div class="small">{{ rv.comment }}</div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="p-3 text-muted">No reviews yet.</div>
+      {% endif %}
+
+      {% if user %}
+      <hr>
+      <form method="post" action="/add_review">
+        <input type="hidden" name="product_id" value="{{ product.product_id }}">
+        <div class="mb-2">
+          <label class="form-label">Your rating</label>
+          <select name="rating" class="form-select form-select-sm" required>
+            <option value="5">5 — Excellent</option>
+            <option value="4">4 — Very good</option>
+            <option value="3">3 — Average</option>
+            <option value="2">2 — Poor</option>
+            <option value="1">1 — Terrible</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Comment</label>
+          <textarea name="comment" class="form-control" rows="2"></textarea>
+        </div>
+        <button class="btn btn-success btn-sm">Submit review</button>
+      </form>
+      {% else %}
+        <div class="p-2"><a href="/login">Login</a> to add a review.</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-product p-3">
+      <h6>Product Info</h6>
+      <ul class="list-unstyled small">
+        <li>Stock: {{ product.stock_quantity }}</li>
+        <li>Vendor ID: {{ product.vendor_id }}</li>
+        <li>Category ID: {{ product.cat_id }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>Delivery Status</h3>
+<div class="card card-product p-3">
+  {% if deliveries %}
+  <table class="table">
+    <thead><tr><th>ID</th><th>Carrier</th><th>Tracking</th><th>Shipped At</th><th>Delivered At</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for d in deliveries %}
+      <tr>
+        <td>{{ d.delivery_id }}</td>
+        <td>{{ d.carrier }}</td>
+        <td>{{ d.track_no }}</td>
+        <td>{{ d.shipped_at }}</td>
+        <td>{{ d.delivered_at }}</td>
+        <td>{{ d.del_status }}</td>
+        <td>
+          {% if d.del_status != 'Delivered' and d.del_status != 'Cancelled' %}
+          <form method="post" action="/process_delivery">
+            <input type="hidden" name="payment_id" value="{{ d.payment_id }}">
+            <button class="btn btn-sm btn-outline-primary" {% if d.del_status == 'Pending' %}disabled{% endif %}>Mark Delivered</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <div class="p-4 text-muted">No deliveries found.</div>
+  {% endif %}
+</div>
+{% endblock %}

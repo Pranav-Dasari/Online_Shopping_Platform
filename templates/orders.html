@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>Your Orders</h3>
+<div class="card-product p-0 p-md-3">
+  {% if orders %}
+  <div class="table-responsive">
+    <table class="table">
+      <thead><tr><th>Order ID</th><th>Status</th><th>Total</th><th>Date</th></tr></thead>
+      <tbody>
+        {% for o in orders %}
+        <tr>
+          <td>
+            <span class="fw-bold">#{{ o.order_id }}</span>
+          </td>
+          <td>
+            <span class="badge {% if o.status == 'Delivered' %}text-bg-success{% elif o.status == 'Shipped' %}text-bg-info{% elif o.status == 'Pending' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">
+              {{ o.status }}
+            </span>
+          </td>
+          <td>₹{{ '%.2f'|format(o.order_total) }}</td>
+          <td>{{ o.order_date }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="p-5 text-center text-muted">No orders yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

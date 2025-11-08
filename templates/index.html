@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col-md-8">
+    <div class="p-4 card card-product">
+      <h2 class="mb-1">Welcome{% if user %}, {{ user.name }}{% endif %}!</h2>
+      <p class="text-muted">Top picks for you — curated from user reviews and stock.</p>
+      <a href="/products" class="btn btn-primary">Browse all products</a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card card-product p-3">
+      <h6>Top Picks</h6>
+      <div class="list-group list-group-flush">
+        {% for p in products %}
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">{{ p.product_name }}</div>
+            <small class="text-muted">{{ '%.1f'|format(p.avg_rating) }} ★ • ₹{{ '%.2f'|format(p.price) }}</small>
+          </div>
+          <a class="btn btn-sm btn-outline-secondary" href="/product/{{ p.product_id }}">View</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

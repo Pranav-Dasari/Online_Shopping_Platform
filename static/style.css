@@ -1,0 +1,213 @@
+/* Import a modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =====================================
+  CSS Variables (Color Palette)
+  =====================================
+*/
+:root {
+  --font-family: 'Inter', sans-serif;
+  --bg-color: #f8f9fa; /* Very light grey */
+  --card-bg: #ffffff;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --primary: #4A90E2;     /* A professional blue */
+  --primary-hover: #357ABD;
+  --secondary: #50E3C2;   /* A fresh accent green/teal */
+  --danger: #D0021B;
+  --danger-outline: #FDD;
+  --border-color: #dee2e6;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+/* =====================================
+  Global Styles
+  =====================================
+*/
+body {
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  padding-top: 72px; /* For fixed navbar */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 1140px;
+}
+
+/* =====================================
+  Navbar
+  =====================================
+*/
+.navbar {
+  /* Your original gradient */
+  background: linear-gradient(90deg,#3b82f6,#7c3aed); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand {
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  opacity: 0.8;
+}
+
+/* =====================================
+  Buttons
+  =====================================
+*/
+.btn {
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-success {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  color: #000;
+}
+.btn-success:hover {
+  background-color: #3fC8A8;
+  border-color: #3fC8A8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-outline-danger {
+  color: var(--danger);
+  border-color: var(--danger-outline);
+  background: var(--danger-outline);
+}
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn-outline-secondary {
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--bg-color);
+}
+
+/* =====================================
+  Cards & Forms
+  =====================================
+*/
+.card-product {
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  border: none;
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+  overflow: hidden; /* Ensures shadows and borders look clean */
+  padding: 1.5rem;
+}
+
+.card-product:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Card used for forms (login, signup) */
+.card-form {
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  border: none;
+  background: var(--card-bg);
+  padding: 2rem;
+}
+
+.form-control, .form-select {
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border-color);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* =====================================
+  Tables (Cart, Orders, etc.)
+  =====================================
+*/
+.table {
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Adds space between rows */
+  vertical-align: middle;
+}
+
+.table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.table td {
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Makes table rows look like cards */
+.table tr {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  border-radius: var(--border-radius);
+}
+
+.table td:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-left: 1px solid var(--border-color);
+}
+.table td:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-right: 1px solid var(--border-color);
+}
+
+/* =====================================
+  Footer
+  =====================================
+*/
+footer {
+  margin-top: 48px;
+  padding: 24px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
