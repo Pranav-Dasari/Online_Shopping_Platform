@@ -27,9 +27,11 @@ This project showcases advanced MySQL database logic integrated with Flask.
 
 ### 🔹 Stored Procedures
 - **sp_process_delivery:** Updates order and delivery status to *'Delivered'* when called
+- **sp_delivery_report:** Shows delivery report
 
 ### 🔹 Functions
 - **fn_total_spent:** Calculates a user’s total lifetime spending on the platform
+- **fn_avg_product_rating:** Calculates average product rating
 
 ---
 
